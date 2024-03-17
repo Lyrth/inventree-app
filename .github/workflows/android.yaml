@@ -3,6 +3,7 @@
 name: Android
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - master
@@ -38,3 +39,8 @@ jobs:
       run: |
         flutter pub get
         flutter build apk --debug
+    - name: Make artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: 'artifact'
+        path: 'build/app/outputs/flutter-apk/'
